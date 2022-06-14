@@ -8,4 +8,10 @@ import lombok.Setter;
 public class CurrentAccount extends Account {
 
 	private float overdraft;
+
+	public CurrentAccount() {
+		super();
+	}
+	
+	
 }
