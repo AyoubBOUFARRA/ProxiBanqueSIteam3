@@ -1,4 +1,4 @@
-package ProxiBanqueSIab.model;
+package org.proxiBanqueSI.model;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
@@ -13,8 +13,11 @@ public class Account {
 	private float balance;
 	
 	public Account() {
-		super();
+	}
+
+	public Account(float balance) {
+		this.balance = balance;
 	}
 	
-	
+		
 }

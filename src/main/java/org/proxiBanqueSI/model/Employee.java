@@ -1,4 +1,4 @@
-package ProxiBanqueSIab.model;
+package org.proxiBanqueSI.model;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -24,14 +24,11 @@ public class Employee extends Person{
 	}
 	
 	public Employee() {
-		super();
 	}
 	
-
-	public Employee(Role role, Set<Client> clients) {
-		super();
+	public Employee(String firstname, String lastname, Address address, String phone, Role role) {
+		super(firstname, lastname, address, phone);
 		this.role = role;
-		this.clients = clients;
 	}
 
 

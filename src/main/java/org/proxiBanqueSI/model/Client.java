@@ -1,10 +1,11 @@
-package ProxiBanqueSIab.model;
+package org.proxiBanqueSI.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import lombok.Data;
 import lombok.Getter;
@@ -14,9 +15,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
- class Client extends Person {
+ public class Client extends Person {
 	@Embedded
 	private Account account;
+	
 	private CardLevel cardLevel;
 	
 	public enum CardLevel {
@@ -24,8 +26,15 @@ import lombok.Setter;
 	}
 	
 	public Client() {
-		super();
+	}	
+	
+	
+	public Client(String firstname, String lastname, Address address, String phone, Account account, CardLevel cardLevel) {
+		super(firstname, lastname, address, phone);
+		this.account = account;
+		this.cardLevel = cardLevel;
 	}
+
 
 	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
 	@JoinColumn(name="employee_id")
@@ -37,12 +46,5 @@ import lombok.Setter;
 	}
 
 
-	public Client(Account account, CardLevel cardLevel, Employee employee) {
-		super();
-		this.account = account;
-		this.cardLevel = cardLevel;
-		this.employee = employee;
-	}
-	
 	
 }

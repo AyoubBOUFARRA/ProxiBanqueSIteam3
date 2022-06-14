@@ -1,4 +1,4 @@
-package ProxiBanqueSIab.model;
+package org.proxiBanqueSI.model;
 
 import java.util.Date;
 

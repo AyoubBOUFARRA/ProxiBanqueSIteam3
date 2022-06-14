@@ -1,4 +1,4 @@
-package ProxiBanqueSIab.model;
+package org.proxiBanqueSI.model;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -20,18 +20,17 @@ public abstract class Person {
 	private Long id;
 	private String firstname;
 	private String lastname;
+	private String phone;
 	
 	@Embedded
 	private Address address;
-	private String phone;
-	
+		
 	public Person() {
 		super();
 	}
 
-	public Person(Long id, String firstname, String lastname, Address address, String phone) {
+	public Person(String firstname, String lastname, Address address, String phone) {
 		super();
-		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.address = address;

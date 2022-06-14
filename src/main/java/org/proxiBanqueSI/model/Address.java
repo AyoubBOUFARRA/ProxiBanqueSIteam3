@@ -1,4 +1,4 @@
-package ProxiBanqueSIab.model;
+package org.proxiBanqueSI.model;
 
 import javax.persistence.Embeddable;
 
@@ -15,6 +15,14 @@ public class Address {
 	public Address() {
 		super();
 	}
+
+	public Address(String street, String zip, String city) {
+		this.street = street;
+		this.zip = zip;
+		this.city = city;
+	}
+	
+	
 	
 	
 	
