@@ -4,7 +4,7 @@ import javax.persistence.Embeddable;
 
 import lombok.Data;
 
-@Data
+//@Data
 @Embeddable
 public class Address {
 
@@ -13,7 +13,6 @@ public class Address {
 	private String city;
 	
 	public Address() {
-		super();
 	}
 
 	public Address(String street, String zip, String city) {
@@ -21,9 +20,29 @@ public class Address {
 		this.zip = zip;
 		this.city = city;
 	}
-	
-	
-	
-	
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getZip() {
+		return zip;
+	}
+
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
 	
 }

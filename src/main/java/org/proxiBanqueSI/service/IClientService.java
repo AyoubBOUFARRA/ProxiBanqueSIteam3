@@ -7,6 +7,6 @@ import org.proxiBanqueSI.model.Employee;
 import org.proxiBanqueSI.model.Person;
 
 public interface IClientService {
-	Person addClient(Client c);
-	List<Employee> listEmployee();
+	Client addClient(Client c);
+	List<Client> listClient();
 }

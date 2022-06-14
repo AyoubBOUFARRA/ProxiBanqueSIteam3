@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 
 import lombok.Data;
 
-@Data
+// @Data
 @Embeddable
 public class Account {
 
@@ -18,6 +18,14 @@ public class Account {
 	public Account(float balance) {
 		this.balance = balance;
 	}
+
+	public float getBalance() {
+		return balance;
+	}
+
+	public void setBalance(float balance) {
+		this.balance = balance;
+	}
 	
-		
+	
 }

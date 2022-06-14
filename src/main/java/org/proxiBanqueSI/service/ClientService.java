@@ -19,15 +19,14 @@ public class ClientService implements IClientService {
 		this.personRepository = personRepository;
 	}
 
-
 	@Override
-	public Person addClient(Client c) {
+	public Client addClient(Client c) {
 		return personRepository.save(c);
 	}
 	
 	@Override
-	public List<Employee> listEmployee() {
-		return personRepository.findAllEmployees();
+	public List<Client> listClient() {
+		return personRepository.findAllClient();
 	}
 
 }

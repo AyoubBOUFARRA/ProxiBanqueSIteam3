@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import lombok.Data;
 
 
-@Data
+//@Data
 @Entity
 public class Employee extends Person{
 
@@ -34,10 +34,29 @@ public class Employee extends Person{
 
 	@OneToMany(mappedBy = "employee", cascade = {CascadeType.PERSIST})
 	private Set<Client> clients = new HashSet<Client>();
+
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public Set<Client> getClients() {
+		return clients;
+	}
+
+	public void setClients(Set<Client> clients) {
+		this.clients = clients;
+	}
 	
 	
-	public void addStudent(Client client) {
+	public void addClient(Client client) {
 		clients.add(client);
 		client.setEmployee(this);
 	}
+	
+	
 }

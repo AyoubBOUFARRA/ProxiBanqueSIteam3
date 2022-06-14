@@ -10,13 +10,13 @@ import javax.persistence.InheritanceType;
 
 import lombok.Data;
 
-@Data
+// @Data
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Person {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long id;
 	private String firstname;
 	private String lastname;
@@ -26,7 +26,6 @@ public abstract class Person {
 	private Address address;
 		
 	public Person() {
-		super();
 	}
 
 	public Person(String firstname, String lastname, Address address, String phone) {
@@ -35,6 +34,46 @@ public abstract class Person {
 		this.lastname = lastname;
 		this.address = address;
 		this.phone = phone;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+//	public void setId(Long id) {
+//		this.id = id;
+//	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 	
 	
