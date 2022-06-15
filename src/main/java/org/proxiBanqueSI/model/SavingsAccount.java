@@ -1,15 +1,19 @@
 package org.proxiBanqueSI.model;
 
+import javax.persistence.Entity;
+
 import lombok.Data;
 
-@Data
+// @Data
+@Entity
 public class SavingsAccount extends Account {
 
-	private float payRate;
+	private float payRate = (float) 0.03;
 
 	public SavingsAccount() {
-		super();
 	}
-	
-	
+
+	public SavingsAccount(float balance, String accountId) {
+		super(balance, accountId);
+	}	
 }

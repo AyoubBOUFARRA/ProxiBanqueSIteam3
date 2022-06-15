@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.proxiBanqueSI.model.Client;
 import org.proxiBanqueSI.model.Person;
-import org.proxiBanqueSI.model.Employee;
-import org.proxiBanqueSI.model.Employee.Role;
+import org.proxiBanqueSI.model.Advisor;
+
 
 @SpringBootTest
 class ProxiBanqueSIabApplicationTests {
@@ -30,16 +30,21 @@ class ProxiBanqueSIabApplicationTests {
 	void contextLoads() {
 		org.proxiBanqueSI.model.Address address1 = new org.proxiBanqueSI.model.Address("55 rue Francois Mitterand", "77400", "Chelle");
 		org.proxiBanqueSI.model.Address address2 = new org.proxiBanqueSI.model.Address("30 rue Jacque Jirac", "59300", "Valeciennes");
-		List<Person> persons = List.of(new Employee("Pierre", "Dupont", address1, "06128476464", Role.ADVISOR), new Employee("Bob", "Marley", address2, "06128476464", Role.MANAGER));
+		List<Person> persons = List.of(new Advisor("Pierre", "Dupont", address1, "06128476464"), new Advisor("Bob", "Marley", address2, "06218476464"));
 		
-		org.proxiBanqueSI.model.Address address3 = new org.proxiBanqueSI.model.Address("55 rue Francois Mitterand", "77400", "Chelle");
-		org.proxiBanqueSI.model.Address address4 = new org.proxiBanqueSI.model.Address("30 rue Jacque Jirac", "59300", "Valeciennes");
-		List<Person> persons1 = List.of(new Employee("Pierre", "Dupont", address3, "06128476464", Role.ADVISOR), new Employee("Bob", "Marley", address4, "06128476464", Role.MANAGER));
+		org.proxiBanqueSI.model.Address address3 = new org.proxiBanqueSI.model.Address("14 rueJacvque Jirac", "93000", "saint Denis");
+		org.proxiBanqueSI.model.Address address4 = new org.proxiBanqueSI.model.Address("23 rue Emmanuel", "59400", "Valeciennes");
+		List<Person> persons1 = List.of(new Advisor("Thierry", "Henry", address3, "08128476464"), new Advisor("Alex", "Kamga", address4, "09128476464"));
 				
 				
-		personRepository.saveAll(persons);
+		personRepository.saveAll(persons1);
 		List<Person> pers = personRepository.findAll();
 		System.out.println(pers);
 	}
+	
+//	@Test
+//	void testCreationClient(Client c) {
+//		
+//	}
 
 }
