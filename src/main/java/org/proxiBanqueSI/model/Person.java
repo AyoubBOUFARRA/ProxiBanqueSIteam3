@@ -29,7 +29,6 @@ public abstract class Person {
 	}
 
 	public Person(String firstname, String lastname, Address address, String phone) {
-		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.address = address;

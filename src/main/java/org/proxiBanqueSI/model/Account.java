@@ -22,7 +22,7 @@ public abstract class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private float balance;
+	private float balance = 0;
 	private String accountId;
 	
 	

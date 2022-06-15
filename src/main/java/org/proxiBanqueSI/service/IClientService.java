@@ -12,4 +12,5 @@ public interface IClientService {
 	public List<Client> listClient();
 	public void deleteClientById(Long id);
 	public Client updateClient(Client client);
+	public Client addClientByAdvisor(Long id, Client client);
 }

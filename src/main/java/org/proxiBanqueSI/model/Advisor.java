@@ -56,9 +56,11 @@ public class Advisor extends Person{
 	}
 	
 	
-	public void addClient(Client client) {
+	public Client addClient(Client client) {
 		clients.add(client);
 		client.setAdvisor(this);
+		
+		return client;
 	}
 	
 }

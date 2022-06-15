@@ -15,9 +15,9 @@ public class CurrentAccount extends Account {
 	public CurrentAccount() {
 	}
 
-	public CurrentAccount(float balance, String accountId) {
+	public CurrentAccount(float balance, String accountId, float overdraft) {
 		super(balance, accountId);
-		// this.overdraft = overdraft;
+		this.overdraft = overdraft;
 	}
 	
 	

@@ -13,7 +13,8 @@ public class SavingsAccount extends Account {
 	public SavingsAccount() {
 	}
 
-	public SavingsAccount(float balance, String accountId) {
+	public SavingsAccount(float balance, String accountId, float payRate) {
 		super(balance, accountId);
+		this.payRate = payRate;
 	}	
 }

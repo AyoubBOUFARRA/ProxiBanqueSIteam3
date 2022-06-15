@@ -14,12 +14,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 //@Getter
 //@Setter
+
 @Entity
  public class Client extends Person {
 	
@@ -54,7 +58,7 @@ import lombok.Setter;
 	public void setAdvisor(Advisor advisor) {
 		this.advisor = advisor;
 	}
-
+	
 //	public Account getAccount() {
 //		return account;
 //	}
@@ -62,6 +66,10 @@ import lombok.Setter;
 //	public void setAccount(Account account) {
 //		this.account = account;
 //	}
+	
+	public Set<Account> getAccounts() {
+		return accounts;
+	}
 
 	public String getCardLevel() {
 		return cardLevel;
