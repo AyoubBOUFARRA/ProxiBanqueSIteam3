@@ -48,8 +48,15 @@ public class ClientService implements IClientService {
 	}
 	
 	@Override
-	public Client updateClient(Client client) {
-		return personRepository.save(client);
+	public Client updateClient(Long id, Client client) {
+		Client c = personRepository.findClientById(id);
+		c.setAddress(client.getAddress());
+		c.setAdvisor(client.getAdvisor());
+		c.setCardLevel(client.getCardLevel());
+		c.setFirstname(client.getFirstname());
+		c.setLastname(client.getLastname());
+		c.setPhone(client.getPhone());
+		return personRepository.save(c);
 	}
 	
 	@Override

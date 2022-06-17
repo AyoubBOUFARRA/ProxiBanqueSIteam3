@@ -3,11 +3,13 @@ package org.proxiBanqueSI.restcontroller;
 import java.util.List;
 
 import org.proxiBanqueSI.model.Advisor;
+import org.proxiBanqueSI.model.Client;
 import org.proxiBanqueSI.service.IAdvisorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,6 +32,11 @@ public class WebServiceAdvisor {
 	@GetMapping("/manager/{id}/advisors")
 	public List<Advisor> getAllAdvisorsByManger(@PathVariable Long id) {
 		return advisorService.getAllAdvisorsByManger(id);
+	}
+	
+	@PutMapping("/advisor/{id}")
+	public Advisor updateAdvisor(@PathVariable Long id, @RequestBody Advisor advisor) {
+		return advisorService.updateAdvisor(id, advisor);
 	}
 	
 	// methode update a faire conseiler

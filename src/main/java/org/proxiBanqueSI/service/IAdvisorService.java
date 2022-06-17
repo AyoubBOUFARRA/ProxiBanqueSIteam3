@@ -8,4 +8,5 @@ public interface IAdvisorService {
 	Advisor addAdvisor(Advisor e, Long id);
 	List<Advisor> listAdvisors();
 	public List<Advisor> getAllAdvisorsByManger(Long id);
+	public Advisor updateAdvisor(Long id, Advisor advisor);
 }

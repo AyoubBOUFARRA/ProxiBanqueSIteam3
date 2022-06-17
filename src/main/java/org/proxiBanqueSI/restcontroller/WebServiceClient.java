@@ -46,6 +46,6 @@ public class WebServiceClient {
 	
 	@PutMapping("/client/{id}")
 	public Client updateClient(@PathVariable Long id, @RequestBody Client client) {
-		return clientService.updateClient(client);
+		return clientService.updateClient(id, client);
 	}
 }

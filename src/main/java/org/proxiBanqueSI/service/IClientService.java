@@ -13,7 +13,7 @@ public interface IClientService {
 	public Client addClient(Client c);
 	public List<Client> listClient();
 	public void deleteClientById(Long id);
-	public Client updateClient(Client client);
+	public Client updateClient(Long id, Client client);
 	public Client addClientByAdvisor(Long id, Client client);
 	public void virementClient(Long id, Virement vir);
 	public Client findClientById(Long id);
