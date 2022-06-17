@@ -22,13 +22,16 @@ public class WebServiceAdvisor {
 	public List<Advisor> getAllAdvisors() {
 		return advisorService.listAdvisors();
 	  }
-	@PostMapping("/{id_directeur}/advisor")
-	public Advisor createAdvisor(@PathVariable Long id_directeur, @RequestBody Advisor advisor) {
-	return advisorService.addAdvisor(advisor, id_directeur);	
+	@PostMapping("/manager/{id}/advisor")
+	public Advisor createAdvisor(@PathVariable Long id, @RequestBody Advisor advisor) {
+	return advisorService.addAdvisor(advisor, id);	
 	}
 	
-	@GetMapping("/{id_directeur}/advisors")
-	public List<Advisor> getAllAdvisorsByManger(@PathVariable Long id_directeur) {
-		return advisorService.getAllAdvisorsByManger(id_directeur);
+	@GetMapping("/manager/{id}/advisors")
+	public List<Advisor> getAllAdvisorsByManger(@PathVariable Long id) {
+		return advisorService.getAllAdvisorsByManger(id);
 	}
+	
+	// methode update a faire conseiler
+	// methode delete conseiller
 }

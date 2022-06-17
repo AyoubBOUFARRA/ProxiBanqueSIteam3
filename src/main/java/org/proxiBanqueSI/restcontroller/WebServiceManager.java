@@ -32,9 +32,6 @@ public class WebServiceManager {
 	@Autowired
 	private IClientService clientService;
 	
-	@Autowired
-	private IAccountService accountService;
-	
 		
 	@Autowired
 	private IManagerService managerService;
@@ -46,34 +43,29 @@ public class WebServiceManager {
 	}
 
 	// CRUD Directeurs agence
-	@GetMapping("/directeurs")	
+	@GetMapping("/managers")	
 	public List<Manager> getAllManagers() {
 		return managerService.listManagers();
 	}
 	
-	@PostMapping("/directeur")
+	@PostMapping("/manager")
 	public Manager createManager(@RequestBody Manager manager) {
 		return managerService.addManager(manager);
 	}
 	
-///////////	////////////////////////////////////////////////////////	
 	@GetMapping("/employees")
 	public List<Person> getAllPerson() {
 		return personService.listPerson();
 	  }
-
-///////////	////////////////////////////////////////////////////////
-	@GetMapping("/accounts")
-	public List<Account> getAllAcount() {
-		return accountService.listAcounts();
-	  }
-	   
-/////////////////////////////////////////////////////////////////
-	@PostMapping("/virement/{id}")
-	public void virementClient(@PathVariable Long id, @RequestBody Virement vir) {
-		
-		java.util.Set<Account> accounts = clientService.findClientById(id).getAccounts();
-	}
-	
-	
+	// modifier les information du directeur
 }
+	   
+///////////////////////////////////////////////////////////////////
+//	@PostMapping("/virement/{id}")
+//	public void virementClient(@PathVariable Long id, @RequestBody Virement vir) {
+//		
+//		java.util.Set<Account> accounts = clientService.findClientById(id).getAccounts();
+//	}
+//	
+	
+

@@ -24,7 +24,7 @@ public class WebServiceClient {
 	public List<Client> getAllClient() {
 		return clientService.listClient();
 	  }
-	@GetMapping("/{id}/listclients")
+	@GetMapping("/advisor/{id}/listclients")
 	public List<Client> getAllClientByAdvisor(@PathVariable Long id) {
 		return clientService.getAllClientByAdvisor(id);
 	  }
@@ -34,7 +34,7 @@ public class WebServiceClient {
 		return clientService.addClient(c);
 		}
 		
-	@PostMapping("/{id}/createclient")
+	@PostMapping("/advisor/{id}/createclient")
 	public Client createClientByAdvisor(@PathVariable Long id, @RequestBody Client c){	
 		return clientService.addClientByAdvisor(id, c);
 		}
