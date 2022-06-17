@@ -22,5 +22,17 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 	
 	@Query("select a from Advisor a where a.id = ?1")
 	public Advisor findAdvisorById(Long id);
+	
+	@Query("select c from Client c where c.id = ?1")
+	public Client findClientById(Long id);
+	
+	@Query("select c from Client c where c.advisor.id = ?1")
+	public List<Client> getClientByAdvisor(Long id);
+	
+	@Query("select m from Manager m where m.id = ?1")
+	public Manager findManagerById(Long id);
+	
+	@Query("select a from Advisor a where a.manager.id = ?1")
+	public List<Advisor> getAdvisorByManager(Long id);
 
 }

@@ -3,8 +3,10 @@ package org.proxiBanqueSI.service;
 import java.util.List;
 
 import org.proxiBanqueSI.model.Advisor;
+import org.proxiBanqueSI.model.Manager;
 import org.proxiBanqueSI.repository.PersonRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class AdvisorService implements IAdvisorService {
@@ -16,13 +18,20 @@ public class AdvisorService implements IAdvisorService {
 	}
 
 	@Override
-	public Advisor addAdvisor(Advisor e) {
-		return null;
+	public Advisor addAdvisor(Advisor a , Long id) {
+		Manager manager =  personRepository.findManagerById(id);
+		manager.addClient(a);
+		return personRepository.save(a);
 	}
 
 	@Override
 	public List<Advisor> listAdvisors() {
 		return personRepository.findAllAdvisors();
+	}
+	
+	@Override
+	public List<Advisor> getAllAdvisorsByManger(Long id){
+		return personRepository.getAdvisorByManager(id);
 	}
 
 }

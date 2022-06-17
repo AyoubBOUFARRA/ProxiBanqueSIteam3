@@ -5,6 +5,8 @@ import java.util.List;
 import org.proxiBanqueSI.model.Client;
 import org.proxiBanqueSI.model.CurrentAccount;
 import org.proxiBanqueSI.model.Manager;
+import org.hibernate.mapping.Set;
+import org.proxiBanqueSI.dto.Virement;
 import org.proxiBanqueSI.model.Account;
 import org.proxiBanqueSI.model.Advisor;
 import org.proxiBanqueSI.model.Person;
@@ -25,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class WebService {
+public class WebServiceManager {
 	
 	@Autowired
 	private IClientService clientService;
@@ -33,59 +35,45 @@ public class WebService {
 	@Autowired
 	private IAccountService accountService;
 	
-	@Autowired
-	private IAdvisorService advisorService;
-	
+		
 	@Autowired
 	private IManagerService managerService;
 	
 	
 	private IPersonService personService;	
-	public WebService(IPersonService personService) {
+	public WebServiceManager(IPersonService personService) {
 		this.personService = personService;
 	}
-	
-	
-	@GetMapping("/advisors")
-	public List<Advisor> getAllAdvisors() {
-		return advisorService.listAdvisors();
-	  }
-	
-	@GetMapping("/managers")	
+
+	// CRUD Directeurs agence
+	@GetMapping("/directeurs")	
 	public List<Manager> getAllManagers() {
 		return managerService.listManagers();
 	}
+	
+	@PostMapping("/directeur")
+	public Manager createManager(@RequestBody Manager manager) {
+		return managerService.addManager(manager);
+	}
+	
+///////////	////////////////////////////////////////////////////////	
 	@GetMapping("/employees")
 	public List<Person> getAllPerson() {
 		return personService.listPerson();
 	  }
-	@GetMapping("/clients")
-	public List<Client> getAllClient() {
-		return clientService.listClient();
-	  }
-	
+
+///////////	////////////////////////////////////////////////////////
 	@GetMapping("/accounts")
 	public List<Account> getAllAcount() {
 		return accountService.listAcounts();
 	  }
-	  
-	@PostMapping("/client")
-	public Client createClient(@RequestBody Client c){
+	   
+/////////////////////////////////////////////////////////////////
+	@PostMapping("/virement/{id}")
+	public void virementClient(@PathVariable Long id, @RequestBody Virement vir) {
 		
-		return clientService.addClient(c);
-		}
-	@PostMapping("/advisor/{id}/client")
-	public Client createClientByAdvisor(@PathVariable Long id, @RequestBody Client c){	
-		return clientService.addClientByAdvisor(id, c);
-		}
-	
-	@DeleteMapping("/client/{id}")
-	public void deleteClient(@PathVariable("id") Long id) {
-		clientService.deleteClientById(id);
+		java.util.Set<Account> accounts = clientService.findClientById(id).getAccounts();
 	}
 	
-	@PutMapping("/client")
-	public Client updateClient(@RequestBody Client client) {
-		return clientService.updateClient(client);
-	}
+	
 }

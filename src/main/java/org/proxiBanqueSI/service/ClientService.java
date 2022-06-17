@@ -7,12 +7,17 @@ import java.util.stream.Collectors;
 
 import org.proxiBanqueSI.model.Client;
 import org.proxiBanqueSI.model.CurrentAccount;
+import org.proxiBanqueSI.dto.Virement;
+import org.proxiBanqueSI.exception.ErrorException;
+import org.proxiBanqueSI.exception.OrderNotFoundException;
 import org.proxiBanqueSI.model.Account;
 import org.proxiBanqueSI.model.Advisor;
 import org.proxiBanqueSI.model.Person;
 import org.proxiBanqueSI.model.SavingsAccount;
 import org.proxiBanqueSI.repository.PersonRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 @Service
@@ -48,15 +53,15 @@ public class ClientService implements IClientService {
 	}
 	
 	@Override
-	public Client addClientByAdvisor(Long id, Client client) {
-		if (personRepository.findAdvisorById(id) == null) {
-		
-		}else if(personRepository.findAdvisorById(id).getClients().size()>10) {
-			
-		}
-		return personRepository.findAdvisorById(id).addClient(client);
+	public Client addClientByAdvisor(Long id, Client client){
+
+		this.getAdvisor(id).addClient(client);
+		return this.addClient(client);
 	}
-	
+	@Override
+	public Client findClientById(Long id) {
+		return personRepository.findClientById(id);
+	}
 	public void createAccountForClient(Client client) {
 		
 		String clientId = "AGEPODHSJZ1344";
@@ -66,9 +71,25 @@ public class ClientService implements IClientService {
 		client.addAccount(compteEpagne);
 	}
 	
+	@Override
+	public void virementClient(Long id, Virement vir) {
+		
+	}
+	@Override
+	public List<Client> getAllClientByAdvisor(Long id){
+		return personRepository.getClientByAdvisor(id);
+	}
+	
 //	public Advisor getOneAdvisor(Long id) {
 //		List<Advisor> advisors = personRepository.findAllAdvisors();
 //		advisors.stream().map(a -> a.getId().equals(id));
 //		return null;
 //	}
+	
+	public Advisor  getAdvisor(Long id) {
+		Advisor advisor = personRepository.findAdvisorById(id);
+		if (advisor == null) throw new OrderNotFoundException();	
+		if(personRepository.findAdvisorById(id).getClients().size()>10) throw new OrderNotFoundException();
+		return advisor;
+	}
 }

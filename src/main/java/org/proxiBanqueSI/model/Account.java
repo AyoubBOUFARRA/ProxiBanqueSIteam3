@@ -29,14 +29,13 @@ public abstract class Account {
 //	@OneToOne(mappedBy = "account")
 //	private Client client;
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+	@ManyToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name="client_id")
 	private Client client;
 	
 	public Account() {
 	}
 		
-
 	public Client getClient() {
 		return client;
 	}

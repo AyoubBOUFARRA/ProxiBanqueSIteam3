@@ -10,7 +10,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -35,7 +39,7 @@ public class Advisor extends Person{
 	}
 
 
-	@OneToMany(mappedBy = "advisor", cascade = {CascadeType.PERSIST})
+	@OneToMany(mappedBy = "advisor", cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
 	private Set<Client> clients = new HashSet<Client>();
 
 
@@ -46,7 +50,7 @@ public class Advisor extends Person{
 //	public void setRole(Role role) {
 //		this.role = role;
 //	}
-
+	@JsonIgnore
 	public Set<Client> getClients() {
 		return clients;
 	}
@@ -55,12 +59,22 @@ public class Advisor extends Person{
 		this.clients = clients;
 	}
 	
+	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+	@JoinColumn(name="manager_id")
+	private Manager manager;
 	
+	public Manager getManager() {
+		return manager;
+	}
+
+	public void setManager(Manager manager) {
+		this.manager = manager;
+	}
+
 	public Client addClient(Client client) {
 		clients.add(client);
-		client.setAdvisor(this);
-		
-		return client;
+		client.setAdvisor(this);		
+		return client;		
 	}
 	
 }

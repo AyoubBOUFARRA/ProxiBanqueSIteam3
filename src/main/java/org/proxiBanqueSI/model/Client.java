@@ -15,14 +15,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-//@Getter
-//@Setter
 
 @Entity
  public class Client extends Person {
@@ -32,7 +32,7 @@ import lombok.Setter;
 //	@JoinColumn(unique = true)
 //	private Account account;
 	
-	@OneToMany(mappedBy = "client", cascade = {CascadeType.PERSIST})
+	@OneToMany(mappedBy = "client", cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
 	private Set<Account> accounts = new HashSet<Account>();
 	
 //	@Enumerated(EnumType.STRING)
@@ -41,7 +41,6 @@ import lombok.Setter;
 //	public enum CardLevel {
 //		CLASSIC, PREMIER
 //	}
-//	
 	public Client() {
 	}	
 	
@@ -51,7 +50,7 @@ import lombok.Setter;
 		this.cardLevel = cardLevel;
 	}
 
-	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+	@ManyToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name="advisor_id")
 	private Advisor advisor;
 		
@@ -66,7 +65,7 @@ import lombok.Setter;
 //	public void setAccount(Account account) {
 //		this.account = account;
 //	}
-	
+	@JsonIgnore
 	public Set<Account> getAccounts() {
 		return accounts;
 	}
