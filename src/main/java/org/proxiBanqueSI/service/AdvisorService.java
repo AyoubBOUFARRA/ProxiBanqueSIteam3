@@ -44,4 +44,9 @@ public class AdvisorService implements IAdvisorService {
 		a.setPhone(advisor.getPhone());
 		return personRepository.save(a);
 	}
+	@Override
+	public void deleteAdvisorAndClient(Long id) {		
+		personRepository.delete(personRepository.findAdvisorById(id));
+		
+	}
 }

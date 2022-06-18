@@ -39,6 +39,7 @@ public class WebServiceClient {
 		return clientService.addClientByAdvisor(id, c);
 		}
 	
+	// supprime seulement le client
 	@DeleteMapping("/deleteclient/{id}")
 	public void deleteClient(@PathVariable Long id) {
 		clientService.deleteClientById(id);

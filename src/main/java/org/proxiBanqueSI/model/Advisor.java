@@ -39,7 +39,7 @@ public class Advisor extends Person{
 	}
 
 
-	@OneToMany(mappedBy = "advisor", cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+	@OneToMany(mappedBy = "advisor", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private Set<Client> clients = new HashSet<Client>();
 
 

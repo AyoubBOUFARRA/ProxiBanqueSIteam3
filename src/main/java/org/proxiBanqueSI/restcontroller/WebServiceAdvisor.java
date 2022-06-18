@@ -6,6 +6,7 @@ import org.proxiBanqueSI.model.Advisor;
 import org.proxiBanqueSI.model.Client;
 import org.proxiBanqueSI.service.IAdvisorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,7 +39,9 @@ public class WebServiceAdvisor {
 	public Advisor updateAdvisor(@PathVariable Long id, @RequestBody Advisor advisor) {
 		return advisorService.updateAdvisor(id, advisor);
 	}
-	
-	// methode update a faire conseiler
-	// methode delete conseiller
+	// supprime le conseiller et les clients associe
+	@DeleteMapping("/deletadvisorandclient/{id}")
+	public void deleteAdvisorAndClient(@PathVariable Long id) {
+		advisorService.deleteAdvisorAndClient(id);
+	}
 }
